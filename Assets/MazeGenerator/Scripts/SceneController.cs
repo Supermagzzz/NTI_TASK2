@@ -17,7 +17,7 @@ public class SceneController : MonoBehaviour {
         var args = File.ReadAllText("input.txt").Split(' ');
         finishY = int.Parse(args[3]) * 4;
         finishX = int.Parse(args[4]) * 4;
-        File.WriteAllLines("input.txt", new List<string>{ "" });
+        //File.WriteAllLines("input.txt", new List<string>{ "" });
         savedMaze = new List<Vector3>();
         memory = new Dictionary<object, object>();
         for (int i = 0; i < transform.childCount; i++) {
@@ -38,8 +38,8 @@ public class SceneController : MonoBehaviour {
         }
         time += Time.fixedDeltaTime;
         if (time >= lastSection) {
-            time = 0;
             makeTurn();
+            time = 0;
         }
     }
 
@@ -78,6 +78,7 @@ public class SceneController : MonoBehaviour {
     }
 
     public void Set(object key, object value) {
+        Add(key, value);
         memory[key] = value;
     }
 
