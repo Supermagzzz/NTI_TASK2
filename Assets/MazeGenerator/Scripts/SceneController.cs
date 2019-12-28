@@ -17,7 +17,6 @@ public class SceneController : MonoBehaviour {
         var args = File.ReadAllText("input.txt").Split(' ');
         finishY = int.Parse(args[3]) * 4;
         finishX = int.Parse(args[4]) * 4;
-        //File.WriteAllLines("input.txt", new List<string>{ "" });
         savedMaze = new List<Vector3>();
         memory = new Dictionary<object, object>();
         for (int i = 0; i < transform.childCount; i++) {
@@ -26,8 +25,9 @@ public class SceneController : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (finishX <= ball.transform.position.x && ball.transform.position.x + 2 <= finishX + 4 && 
-            finishY <= ball.transform.position.z && ball.transform.position.z + 2 <= finishY + 4) {
+        Debug.Log(new Vector4(finishX, finishY, ball.transform.position.x, ball.transform.position.z));
+        if (finishX <= ball.transform.position.x + 2 && ball.transform.position.x + 2 <= finishX + 4 && 
+            finishY <= ball.transform.position.z + 2 && ball.transform.position.z + 2 <= finishY + 4) {
             Debug.Log("Win!");
             File.WriteAllLines("output.txt", new List<string>{ "WIN!" });
             #if UNITY_EDITOR
